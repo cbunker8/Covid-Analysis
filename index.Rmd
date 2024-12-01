@@ -1,0 +1,225 @@
+
+---
+title: "COVID-19 Data Analysis and Insights"
+author: "Chris Bunker"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: flatly
+---
+
+# Introduction
+
+The Covid-19 Pandemic was one of the most significant events of the 21st 
+century. It affected people from across the globe, regardless of socio-economic
+status. The pandemic was believed to have originated in Wuhan, China and after
+spreading rapidly, was officially designated a pandemic by the World Health
+Administration.
+
+As of April 13, 2024, over 7 million people have died as a direct result of 
+Covid-19, with the disease affecting the elderly and immune-compromised the
+most significantly.
+
+It has long been known that diseases do not affect different populations 
+equitably. Countries considered to be "second-world" or "third-world" 
+historically have faced extreme disparities in medical treatment when compared
+to those considered "first-world". For instance, in the United States there was
+an estimated 9,615 cases of TB in 2023, which is a significant number. However, 
+in Indonesia, a country with a population around 50 million people less than the
+US, experienced 821,000 thousand cases of TB in 2023.
+
+The purpose of my data analysis using a publicly available Covid dataset
+from https://ourworldindata.org/coronavirus is to explore the relationship 
+between economic status and country, to see if the trend that has historically
+existed, exists with Covid-19 as well.
+
+However, I will also be keeping in mind important information, such as the 
+bias of data collection, where data collection methods are more prominent and
+tend to be more accurate in first world nations. Also keeping in mind the bias
+to for research and medical treatment to support first world nations rather
+than third world nations.
+
+Below are references used in this passage: 
+
+Northwestern Medicine. (n.d.). COVID-19 pandemic timeline. Retrieved from 
+https://www.nm.org/healthbeat/medical-advances/new-therapies-and-drug-trials/
+covid-19-pandemic-timeline#:~:text=By%20March%202020%2C%20the%20World,
+COVID%2D19%20outbreak%20a%20pandemic.
+
+Worldometer. (n.d.). Coronavirus death toll.
+Retrieved from https://www.worldometers.info/coronavirus/coronavirus-death-toll/
+
+Centers for Disease Control and Prevention (CDC). (2023).
+Mortality in the United States, 2021.
+Retrieved from https://www.cdc.gov/mmwr/volumes/73/wr/mm7312a4.html
+
+USAID. (2024). Indonesia tuberculosis roadmap narrative. 
+Retrieved from https://www.usaid.gov/sites/default/files/2024-01/
+Indonesia_TB_roadmap_narrative-22_edits_508.pdf
+---
+
+# Data and Methods
+
+The data contained Covid related information on around 250 countries throughout
+the world. Depending on the specific analysis, some of these countries did not
+have sufficient data while most did. 
+
+My analysis focused most heavily on total cases per million, total deaths per
+million, GDP Per Capita, and the Country where it occurred. For each of these
+countries I assigned a GDP Status category based upon GDP Per Capita where the
+lowest group had less than $10,000 USD GDP Per Capita, the second lowest having 
+greater than $10,000, the third greater than $20,000, and the highest group
+having more than $35,000 USD GDP Per Capita.
+
+## Data Sources
+
+The analysis is based on the following data:
+- **COVID-19 Data**: Sourced from [Our World in Data](https://ourworldindata.org/coronavirus).
+- **Geospatial Data**: Administrative boundaries from the Natural Earth dataset.
+
+
+## Methods
+
+The visualizations in this report were generated using R and include:
+- Choropleth maps for geographic data visualization.
+- Scatterplots and histograms to explore relationships and distributions.
+- Bar plots to highlight economic indicators.
+
+---
+
+# Analysis and Results
+
+## 1. Economic Indicators: GDP Distribution by Country
+
+The plot below simply shows the GDP Per Capita for various countries.
+
+```{r}
+readRDS("history_plot.rds")
+```
+
+*Key Observations*: [As we can see, the majority of all countries have a GDP Per
+Capita under 10K USD, amounting to almost 50% for all of the data. The other 
+three categories make up the rest.]
+
+---
+
+## 2. Mortality Rates: Distribution of Reported COVID-19 Deaths
+
+This histogram shows the distribution of deaths caused by Covid-19 by
+April 25th, 2022 per million people. 
+
+```{r}
+readRDS("histogram_plot.rds")
+```
+
+*Key Observations*: [As we can see, most countries appear to have deaths under
+2,000 per million people. However, there is a significant right skew to the data
+with one value even greater than 6,000. Further analysis will reveal if economic
+status has a correlation to these outliers. Furthermore, I am skeptical of the 
+data centered near and at zero and wonder instead if this is a problem with
+reporting.]
+
+---
+
+## 3. Demographics: Relationship Between Median Age and COVID-19 Cases
+
+This scatter plot looks at age, total cases per million people, and economic
+status for individual countries. Each dot represents and individual country. The
+median age represents the median age of the country's population.
+
+```{r}
+readRDS("final_plot.rds")
+```
+
+*Key Observations*: [Surprisingly, we see that high GDP countries have higher 
+rates of Covid-19. This may be due to factors unique to wealthy individuals, 
+such as the tendency to travel as well as the nature of Covid-19 which like 
+other seasonal viruses such as the flu, tends to increase in transmission during
+the winter when people are stuck inside. Countries closer to the equator do not
+experience this issue, so as well as tending to have a lower GDP, also have a 
+layer of protection from Covid-19. Like many viruses, it is also possible that 
+Covid-19 simply performs better in one climate than the other. In this case, the 
+protective factors for impoverished countries close to the equator tend to 
+overcome the negating factors which historically have resulted in high levels
+of TB and other diseases.]
+
+---
+
+## 4. Geographic Impact: COVID-19 Deaths in the Americas
+
+This choropleth map highlights the geographic distribution of COVID-19 deaths 
+across the Americas, focusing on Central and South America.
+
+```{r}
+readRDS("map_americas.rds")
+```
+
+*Key Observations*: [The chloropeth map reveals a somewhat interesting finding:
+economic status does not appear to play a significant role in overall deaths 
+caused by Covid-19. The global south encapsulates many third world countries, 
+but as we can see, the death rates are comparable to that of the US and Canada
+and we do not see significant differences between wealthier and poorer countries
+in South America.
+
+However, what we do see is one clear outlier: Peru. After further research, I 
+found that Peru had the world's highest death rate. At the time Covid hit Peru 
+in early 2020, Peru was already being hit by a massive wave of Dengue fever,
+rendering the medical sector incapable of adequately responding to Covid. 
+Furthermore, Peru's medical system ran out of oxygen which was necessary to 
+keep patients in a severe state alive. Other factors such as the informal economy
+and housing crisis in Peru expedited the spread of the virus as well.
+
+Northwestern Medicine. (n.d.). COVID-19 pandemic timeline. Retrieved from https://www.nm.org/healthbeat/medical-advances/new-therapies-and-drug-trials/
+covid-19-pandemic-timeline#:~:text=By%20March%202020%2C%20the%20World,COVID%2D]
+
+---
+
+# Discussion
+
+My analysis and visualization reveals that Economic Status can play a role in
+cases and deaths from Covid-19. However, the relationship is not linear, and
+more descriptive than causal.
+
+For instance, a lack of medical supplies and overcrowding definitely were a 
+significant cause of deaths in Peru. However, this is not a trend that is 
+uniform throughout the data.
+
+Rather, the seasonality of the virus and increased transmission during the 
+winter may likely be a significant factor working against so called "first 
+world nations". As we saw in the scatter plot, first world nations tended to
+represent a significant portion of the global Covid-19 cases. Impoverished 
+countries, with a skew towards the global south, appear to have a layer of 
+protection due to their lack of seasons. However, other factors such as 
+overcrowding and lack of medical supplies and treatment tend to balance out
+with northern countries. This results in a chloropeth (map) that shows a 
+somewhat indiscriminate trend, where economic status and deaths caused by Covid
+do not seem correlated.
+
+---
+
+# Conclusion
+
+Overall, there is not significant evidence to suggest that economic status is 
+a driving force for the number of cases or deaths caused by Covid-19, except in
+the case of Peru where this is significant evidence suggesting that a lack of
+medical supplies were directly responsible for the largest death toll by 
+Covid-19 globally.
+
+---
+
+# References
+
+1. [Our World in Data: COVID-19](https://ourworldindata.org/coronavirus)
+2. [Natural Earth Dataset](https://www.naturalearthdata.com/)
+
+---
+
+
+## Code and Reproducibility
+
+The R code used to generate the visualizations in this report is available in 
+the repository. Readers can reproduce the analysis by running the scripts provided.
+

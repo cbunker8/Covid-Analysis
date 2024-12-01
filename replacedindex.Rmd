@@ -1,0 +1,64 @@
+---
+title: "Chris Bunker Storyboard at DACSS"
+bibliography: final_bib.bib
+output: 
+  flexdashboard::flex_dashboard
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard) # always
+```
+
+## Sidebar {.sidebar}
+
+
+Preparing the dashboard based on the instructions given at @magallanes_reyes_data_2022
+
+https://github.com/cbunker8/ChrisBunker-Final-Submission-690V
+
+## Column {.tabset .tabset-fade}
+
+
+### Breakdown of GDP by Country:
+
+```{r}
+readRDS("history_plot.rds")
+```
+
+
+###  Deaths Reported for Covid-19: a histogram
+
+```{r}
+readRDS("histogram_plot.rds")
+```
+
+###  Relationship Between Median Age and Covid Cases by Country: \n a scatterplot 
+
+```{r}
+options(scipen = 999)
+readRDS("final_plot.rds")
+```
+
+
+### Deaths from Covid In Central and South America: a chloropeth
+
+```{r}
+options(scipen = 999)
+readRDS("map_americas.rds")
+```
+
+
+### References 
+
+Authors and Citation. (n.d.). Retrieved May 1, 2024, from https://pkgs.rstudio.com/flexdashboard/authors.html#citation
+Magallanes Reyes, J. M. (n.d.). Data Visualization DACSS 690V (152195) SP24. Retrieved May 1, 2024, from https://umamherst.instructure.com/courses/9311
+
+Magallanes Reyes, J. M. (2022). Data Visualization for Social and Policy Research: A Step-by-Step Approach Using R and Python. Cambridge University Press. https://doi.org/10.1017/9781108625425
+
+Mathieu, E., Ritchie, H., Rodés-Guirao, L., Appel, C., Giattino, C., Hasell, J., Macdonald, B., Dattani, S., Beltekian, D., Ortiz-Ospina, E., & Roser, M. (2020).
+
+Coronavirus Pandemic (COVID-19). Our World in Data. https://ourworldindata.org/coronavirus
+World Administrative Boundaries—Countries and Territories. (n.d.). 
+
+World Food Programme (UN agency). Retrieved May 1, 2024, from https://public.opendatasoft.com/explore/dataset/world-administrative-boundaries/export/?flg=en-us
+
