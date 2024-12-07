@@ -67,9 +67,18 @@ The data contained Covid related information on around 250 countries throughout
 the world. Depending on the specific analysis, some of these countries did not
 have sufficient data while most did. 
 
-My analysis focused most heavily on total cases per million, total deaths per
-million, GDP Per Capita, and the Country where it occurred. For each of these
-countries I assigned a GDP Status category based upon GDP Per Capita where the
+The data set recorded data on a daily interval between the period of January 1st
+2020 until February 2024. Data was also recorded for a total of 67 variables.
+However, for the purpose of this analysis, I focused on a time period that was
+relevant to the course of the pandemic, and variables that were not missing much
+data. For this reason, the data begins in January 2020 and ends April 25th 2022.
+
+The variables I focus on are Country, GDP, total deaths, and total cases, as well
+as median age. I focus on these variables to get an idea for how the economic
+status of a country has a relationship with Covid cases and deaths. I also 
+created my own variable, economic status, as a result.
+
+For each of these countries I assigned a GDP Status category based upon GDP Per Capita where the
 lowest group had less than $10,000 USD GDP Per Capita, the second lowest having 
 greater than $10,000, the third greater than $20,000, and the highest group
 having more than $35,000 USD GDP Per Capita.
@@ -100,9 +109,9 @@ The plot below simply shows the GDP Per Capita for various countries.
 readRDS("history_plot.rds")
 ```
 
-*Key Observations*: [As we can see, the majority of all countries have a GDP Per
+*Key Observations*: As we can see, the majority of all countries have a GDP Per
 Capita under 10K USD, amounting to almost 50% for all of the data. The other 
-three categories make up the rest.]
+three categories make up the rest.
 
 ---
 
@@ -115,12 +124,12 @@ April 25th, 2022 per million people.
 readRDS("histogram_plot.rds")
 ```
 
-*Key Observations*: [As we can see, most countries appear to have deaths under
+*Key Observations*: As we can see, most countries appear to have deaths under
 2,000 per million people. However, there is a significant right skew to the data
 with one value even greater than 6,000. Further analysis will reveal if economic
 status has a correlation to these outliers. Furthermore, I am skeptical of the 
 data centered near and at zero and wonder instead if this is a problem with
-reporting.]
+reporting.
 
 ---
 
@@ -134,7 +143,7 @@ median age represents the median age of the country's population.
 readRDS("final_plot.rds")
 ```
 
-*Key Observations*: [Surprisingly, we see that high GDP countries have higher 
+*Key Observations*: Surprisingly, we see that high GDP countries have higher 
 rates of Covid-19. This may be due to factors unique to wealthy individuals, 
 such as the tendency to travel as well as the nature of Covid-19 which like 
 other seasonal viruses such as the flu, tends to increase in transmission during
@@ -144,7 +153,7 @@ layer of protection from Covid-19. Like many viruses, it is also possible that
 Covid-19 simply performs better in one climate than the other. In this case, the 
 protective factors for impoverished countries close to the equator tend to 
 overcome the negating factors which historically have resulted in high levels
-of TB and other diseases.]
+of TB and other diseases.
 
 ---
 
@@ -157,7 +166,7 @@ across the Americas, focusing on Central and South America.
 readRDS("map_americas.rds")
 ```
 
-*Key Observations*: [The chloropeth map reveals a somewhat interesting finding:
+*Key Observations*: The chloropeth map reveals a somewhat interesting finding:
 economic status does not appear to play a significant role in overall deaths 
 caused by Covid-19. The global south encapsulates many third world countries, 
 but as we can see, the death rates are comparable to that of the US and Canada
@@ -165,8 +174,8 @@ and we do not see significant differences between wealthier and poorer countries
 in South America.
 
 However, what we do see is one clear outlier: Peru. After further research, I 
-found that Peru had the world's highest death rate. At the time Covid hit Peru 
-in early 2020, Peru was already being hit by a massive wave of Dengue fever,
+found that Peru had the world's highest Covid death rate. At the time Covid hit
+Peru in early 2020, Peru was already being hit by a massive wave of Dengue fever,
 rendering the medical sector incapable of adequately responding to Covid. 
 Furthermore, Peru's medical system ran out of oxygen which was necessary to 
 keep patients in a severe state alive. Other factors such as the informal economy
@@ -179,7 +188,7 @@ covid-19-pandemic-timeline#:~:text=By%20March%202020%2C%20the%20World,COVID%2D]
 
 # Discussion
 
-My analysis and visualization reveals that Economic Status can play a role in
+My analysis and visualization reveals that economic status can play a role in
 cases and deaths from Covid-19. However, the relationship is not linear, and
 more descriptive than causal.
 
@@ -214,6 +223,7 @@ Covid-19 globally.
 
 1. [Our World in Data: COVID-19](https://ourworldindata.org/coronavirus)
 2. [Natural Earth Dataset](https://www.naturalearthdata.com/)
+3. [Github Project Repository](https://github.com/cbunker8/Covid-Analysis.git)
 
 ---
 
